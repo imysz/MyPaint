@@ -3,29 +3,39 @@ package com.example.szymo.mypaint;
 /**
  * Created by szymo on 19.04.2016.
  */
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
 public class PaintView extends SurfaceView implements SurfaceHolder.Callback {
 
     ArrayList<DrawFigure> punkty;
     Paint paint = new Paint();
     private int color;
+    private int size;
 
     public PaintView(Context context, AttributeSet attrs) {
         super(context, attrs);
         punkty = new ArrayList<DrawFigure>();
         paint = new Paint();
         color = Color.RED;
+        size=20;
+
+        DisplayMetrics metrics = new DisplayMetrics();
     }
 
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
@@ -42,18 +52,24 @@ public class PaintView extends SurfaceView implements SurfaceHolder.Callback {
 
     public boolean onTouchEvent(MotionEvent event) {
 
-        RectF oval = new RectF(event.getX()-50, event.getY()-50, event.getX() + 50, event.getY() + 50);
-        punkty.add(new DrawFigure(color,oval));
+        RectF oval = new RectF(event.getX() - size, event.getY() - size, event.getX() + size, event.getY() + size);
+        punkty.add(new DrawFigure(color,size,oval));
         invalidate();
         return true;
     }
 
     protected void onDraw(Canvas canvas) {
 
+
+        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.mipmap.k2);
+        Bitmap img = Bitmap.createScaledBitmap(picture, 720, 1000, true );
+        //Log.d("size: ", ""+ picture.ge;
+        canvas.drawBitmap(img,1,1,null);
         for (DrawFigure punkt : punkty) {
             paint.setColor(punkt.color);
             canvas.drawOval(punkt.figure, paint);
         }
+
 
     }
 
@@ -66,5 +82,12 @@ public class PaintView extends SurfaceView implements SurfaceHolder.Callback {
         invalidate();
     }
 
+    public int getSize(){
+        return size;
+    }
+
+    public void setSize(int size){
+        this.size=size;
+    }
 
 }
