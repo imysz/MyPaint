@@ -12,8 +12,10 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
@@ -21,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
 
     PaintView paintView;
     Context ctx;
+    int buttonSize;
     Button button_red,button_yellow, button_blue, button_green, button_black;
     RadioGroup radioGroup;
 
@@ -39,8 +42,44 @@ public class MainActivity extends ActionBarActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        Log.d("h: ",""+ metrics.heightPixels);
-        Log.d("w: ",""+ metrics.widthPixels);
+        Log.d("h: ", "" + metrics.heightPixels);
+        Log.d("w: ", "" + metrics.widthPixels);
+        buttonSize = metrics.widthPixels / 5;
+        Log.d("buttonsize: ", "" + metrics.widthPixels / 5);
+
+
+        LinearLayout.LayoutParams params_black = (LinearLayout.LayoutParams) button_black.getLayoutParams();
+        params_black.width = buttonSize;
+        params_black.height = buttonSize;
+        button_black.setLayoutParams(params_black);
+
+        LinearLayout.LayoutParams params_red = (LinearLayout.LayoutParams) button_red.getLayoutParams();
+        params_red.width = buttonSize;
+        params_red.height = buttonSize;
+        button_red.setLayoutParams(params_red);
+
+        LinearLayout.LayoutParams params_yellow = (LinearLayout.LayoutParams) button_yellow.getLayoutParams();
+        params_yellow.width = buttonSize;
+        params_yellow.height = buttonSize;
+        button_yellow.setLayoutParams(params_yellow);
+
+        LinearLayout.LayoutParams params_green = (LinearLayout.LayoutParams) button_green.getLayoutParams();
+        params_green.width = buttonSize;
+        params_green.height = buttonSize;
+        button_green.setLayoutParams(params_green);
+
+        LinearLayout.LayoutParams params_blue = (LinearLayout.LayoutParams) button_blue.getLayoutParams();
+        params_blue.width = buttonSize;
+        params_blue.height = buttonSize;
+        button_blue.setLayoutParams(params_blue);
+
+        SurfaceView sw = (PaintView) findViewById(R.id.paintView);
+
+        android.view.ViewGroup.LayoutParams lp = sw.getLayoutParams();
+        lp.height = metrics.heightPixels - buttonSize - 130;
+        sw.setLayoutParams(lp);
+
+        sw.setBackgroundResource(R.drawable.k2);
 
         button_red.setOnClickListener(new View.OnClickListener() {
 

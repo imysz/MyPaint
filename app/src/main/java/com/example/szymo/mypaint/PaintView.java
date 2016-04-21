@@ -60,11 +60,6 @@ public class PaintView extends SurfaceView implements SurfaceHolder.Callback {
 
     protected void onDraw(Canvas canvas) {
 
-
-        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.mipmap.k2);
-        Bitmap img = Bitmap.createScaledBitmap(picture, 720, 1000, true );
-        //Log.d("size: ", ""+ picture.ge;
-        canvas.drawBitmap(img,1,1,null);
         for (DrawFigure punkt : punkty) {
             paint.setColor(punkt.color);
             canvas.drawOval(punkt.figure, paint);

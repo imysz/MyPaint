@@ -13,10 +13,10 @@
 
     <com.example.szymo.mypaint.PaintView
         android:id="@+id/paintView"
-        android:layout_width="285dp"
-        android:layout_height="450dp"
-        android:background="#ffffff"
-        android:layout_weight="1.02" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.02"
+        android:background="#ffffff" />
 </LinearLayout>
 
 <LinearLayout
