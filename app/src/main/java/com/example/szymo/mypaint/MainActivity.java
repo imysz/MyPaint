@@ -73,13 +73,13 @@ public class MainActivity extends ActionBarActivity {
         params_blue.height = buttonSize;
         button_blue.setLayoutParams(params_blue);
 
-        SurfaceView sw = (PaintView) findViewById(R.id.paintView);
 
-        android.view.ViewGroup.LayoutParams lp = sw.getLayoutParams();
+
+        android.view.ViewGroup.LayoutParams lp = paintView.getLayoutParams();
         lp.height = metrics.heightPixels - buttonSize - 130;
-        sw.setLayoutParams(lp);
+        paintView.setLayoutParams(lp);
 
-        sw.setBackgroundResource(R.drawable.k2);
+        paintView.setBackgroundResource(R.drawable.k2);
 
         button_red.setOnClickListener(new View.OnClickListener() {
 
@@ -169,6 +169,11 @@ public class MainActivity extends ActionBarActivity {
                   paintView.clear();
 
                     break;
+
+            case R.id.menu_new:
+                paintView.setBackgroundResource(R.drawable.k1);
+
+                break;
 
         }
 
