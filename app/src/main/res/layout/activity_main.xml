@@ -1,70 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@android:color/white"
-    android:orientation="horizontal" >
-
-    <LinearLayout
-        android:id="@+id/drawable_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <com.example.szymo.mypaint.PaintView
-        android:id="@+id/paintView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.02"
-        android:background="#ffffff" />
-</LinearLayout>
-
-<LinearLayout
-    android:id="@+id/pane_layout"
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="2">
+    android:background="#FFCCCCCC"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
 
-    <Button
-        android:layout_width="144px"
-        android:layout_height="144px"
-        android:background="@drawable/oval_background_red"
-        android:id="@+id/button_red"
-        android:shape="oval"
-        android:layout_gravity="bottom"/>
 
-    <Button
-        android:layout_width="144px"
-        android:layout_height="144px"
-        android:background="@drawable/oval_background_yellow"
-        android:id="@+id/button_yellow"
-        android:padding="10dp"
-        android:layout_gravity="bottom" />
 
-    <Button
-        android:layout_width="144px"
-        android:layout_height="144px"
-        android:background="@drawable/oval_background_blue"
-        android:id="@+id/button_blue"
-        android:padding="10dp"
-        android:layout_gravity="bottom" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal" >
 
-    <Button
-    android:layout_width="144px"
-    android:layout_height="144px"
-    android:background="@drawable/oval_background_green"
-    android:id="@+id/button_green"
-    android:padding="10dp"
-    android:layout_gravity="bottom" />
+        <ImageButton
+            android:id="@+id/new_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="New"
+            android:padding="7dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/new_pic" />
 
-    <Button
-        android:layout_width="144px"
-        android:layout_height="144px"
-        android:background="@drawable/oval_background_black"
-        android:id="@+id/button_black"
-        android:padding="10dp"
-        android:layout_gravity="bottom" />
+        <ImageButton
+            android:id="@+id/draw_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Pencil"
+            android:padding="7dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/brush" />
+
+        <ImageButton
+            android:id="@+id/erase_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Clear"
+            android:padding="7dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/eraser" />
+
+        <ImageButton
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Save"
+            android:padding="7dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/save" />
+
+        <Button
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/oval_background_red"
+            android:id="@+id/button_status"/>
+
+
+    </LinearLayout>
+
+    <com.example.szymo.mypaint.DrawingView
+        android:id="@+id/paintview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight="1"
+        android:background="#FFFFFFFF" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button_red"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_red"
+                android:shape="oval" />
+
+            <Button
+                android:id="@+id/button_yellow"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_yellow"
+                android:padding="10dp" />
+
+
+            <Button
+                android:id="@+id/button_blue"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_blue"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_green"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_green"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_black"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_black"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_brown"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:layout_gravity="bottom"
+                android:background="@drawable/oval_background_brown"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
-
-</RelativeLayout>

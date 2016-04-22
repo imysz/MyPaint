@@ -19,33 +19,54 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
+
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+
 public class MainActivity extends ActionBarActivity {
 
-    PaintView paintView;
-    Context ctx;
+    Button button_red, button_yellow, button_blue, button_green, button_black,button_brown,button_status;
     int buttonSize;
-    Button button_red,button_yellow, button_blue, button_green, button_black;
-    RadioGroup radioGroup;
+    DrawingView drawView;
+    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getApplication();
         setContentView(R.layout.activity_main);
-        paintView = (PaintView) findViewById(R.id.paintView);
+        // paintView = (PaintView) findViewById(R.id.paintView);
+        drawView = (DrawingView)findViewById(R.id.paintview);
+
+
         button_red = (Button) findViewById(R.id.button_red);
         button_yellow = (Button) findViewById(R.id.button_yellow);
         button_blue = (Button) findViewById(R.id.button_blue);
         button_green = (Button) findViewById(R.id.button_green);
         button_black = (Button) findViewById(R.id.button_black);
-        ctx = getApplicationContext();
+        button_brown = (Button) findViewById(R.id.button_brown);
+        button_status = (Button) findViewById(R.id.button_status);
+
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         Log.d("h: ", "" + metrics.heightPixels);
         Log.d("w: ", "" + metrics.widthPixels);
-        buttonSize = metrics.widthPixels / 5;
-        Log.d("buttonsize: ", "" + metrics.widthPixels / 5);
+        buttonSize = metrics.widthPixels / 6;
+        Log.d("buttonsize: ", "" + metrics.widthPixels / 6);
 
 
         LinearLayout.LayoutParams params_black = (LinearLayout.LayoutParams) button_black.getLayoutParams();
@@ -73,110 +94,65 @@ public class MainActivity extends ActionBarActivity {
         params_blue.height = buttonSize;
         button_blue.setLayoutParams(params_blue);
 
+        LinearLayout.LayoutParams params_brown = (LinearLayout.LayoutParams) button_brown.getLayoutParams();
+        params_brown.width = buttonSize;
+        params_brown.height = buttonSize;
+        button_brown.setLayoutParams(params_blue);
 
+        drawView.setBackgroundResource(R.drawable.k2);
 
-        android.view.ViewGroup.LayoutParams lp = paintView.getLayoutParams();
-        lp.height = metrics.heightPixels - buttonSize - 130;
-        paintView.setLayoutParams(lp);
-
-        paintView.setBackgroundResource(R.drawable.k2);
 
         button_red.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                paintView.setColor(Color.RED);
+                drawView.setColor("#FF0000");
+                button_status.setBackgroundResource(R.drawable.oval_background_red);
             }
         });
 
         button_yellow.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                paintView.setColor(Color.YELLOW);
+                drawView.setColor("#FFFF00");
+                button_status.setBackgroundResource(R.drawable.oval_background_yellow);
             }
         });
 
         button_blue.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                paintView.setColor(Color.BLUE);
+                drawView.setColor("#0000FF");
+                button_status.setBackgroundResource(R.drawable.oval_background_blue);
             }
         });
 
         button_green.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                paintView.setColor(Color.GREEN);
+                drawView.setColor("#00FF00");
+                button_status.setBackgroundResource(R.drawable.oval_background_green);
             }
         });
 
         button_black.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                paintView.setColor(Color.BLACK);
+                drawView.setColor("#000000");
+                button_status.setBackgroundResource(R.drawable.oval_background_black);
             }
         });
+
+        button_brown.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                drawView.setColor("#835C3B");
+                button_status.setBackgroundResource(R.drawable.oval_background_brown);
+            }
+        });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_kolor, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-
-            case R.id.menu_rozmiar:
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.size, null);
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setView(layout);
-                alertDialog = builder.create();
-                alertDialog.show();
-                SeekBar sb = (SeekBar)layout.findViewById(R.id.seekBar);
-                sb.setMax(30);
-                sb.setProgress(paintView.getSize() - 20);
-                sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-                    public void onStartTrackingTouch(SeekBar arg0) {
-                        // TODO Auto-generated method stub
-
-                    }
-
-                    public void onStopTrackingTouch(SeekBar arg0) {
-                        // TODO Auto-generated method stub
-
-                    }
-
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        paintView.setSize(20 + progress);
-
-                    }
-                });
-
-                break;
-
-                case R.id.menu_clear:
-                  paintView.clear();
-
-                    break;
-
-            case R.id.menu_new:
-                paintView.setBackgroundResource(R.drawable.k1);
-
-                break;
-
-        }
-
-        return true;
-    }
 }
+
+
