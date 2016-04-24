@@ -24,22 +24,13 @@
             android:src="@drawable/new_pic" />
 
         <ImageButton
-            android:id="@+id/draw_btn"
+            android:id="@+id/load_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:contentDescription="Pencil"
+            android:contentDescription="Save"
             android:padding="7dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/brush" />
-
-        <ImageButton
-            android:id="@+id/erase_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="Clear"
-            android:padding="7dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/eraser" />
+            android:src="@drawable/load" />
 
         <ImageButton
             android:id="@+id/save_btn"
@@ -50,10 +41,12 @@
             android:background="@android:color/transparent"
             android:src="@drawable/save" />
 
+
+
         <Button
-            android:layout_width="47dp"
-            android:layout_height="47dp"
-            android:layout_margin="2dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_margin="5dp"
             android:background="@drawable/oval_background_red"
             android:id="@+id/button_status"/>
 
