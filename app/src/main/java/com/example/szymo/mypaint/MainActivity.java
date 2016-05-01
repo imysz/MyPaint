@@ -1,5 +1,6 @@
 package com.example.szymo.mypaint;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -114,13 +115,15 @@ public class MainActivity extends ActionBarActivity {
         params_brown.height = buttonSize;
         button_brown.setLayoutParams(params_blue);
 
-        drawView.setBackgroundResource(R.drawable.k2);
+        Bundle bundle = getIntent().getExtras();
+        drawView.setBackgroundResource(bundle.getInt("k"));
 
 
         imgbutton_load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawView.setBackgroundResource(R.drawable.k1);
+                Intent intent = new Intent(getApplicationContext(),ChooseList.class);
+                startActivity(intent);
                 drawView.newPane();
             }
         });
